@@ -161,4 +161,9 @@
       lock_inventory = #{lockInventory,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="queryFlashsaleEventsByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from flash_sale_event where status = #{id,jdbcType=SMALLINT}
+  </select>
 </mapper>

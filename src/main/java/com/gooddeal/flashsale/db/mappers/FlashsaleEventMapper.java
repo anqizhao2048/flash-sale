@@ -2,6 +2,8 @@ package com.gooddeal.flashsale.db.mappers;
 
 import com.gooddeal.flashsale.db.po.FlashsaleEvent;
 
+import java.util.List;
+
 public interface FlashsaleEventMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface FlashsaleEventMapper {
     int updateByPrimaryKeySelective(FlashsaleEvent record);
 
     int updateByPrimaryKey(FlashsaleEvent record);
+
+    List<FlashsaleEvent> queryFlashsaleEventsByStatus(int status);
 }
