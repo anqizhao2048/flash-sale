@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gooddeal.flashsale.db.mappers.FlashsaleEventMapper">
+  <resultMap id="BaseResultMap" type="com.gooddeal.flashsale.db.po.FlashsaleEvent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="flash_sale_price" jdbcType="DECIMAL" property="flashSalePrice" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="inventory" jdbcType="BIGINT" property="inventory" />
+    <result column="available_inventory" jdbcType="INTEGER" property="availableInventory" />
+    <result column="lock_inventory" jdbcType="BIGINT" property="lockInventory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, product_id, original_price, flash_sale_price, status, start_time, end_time, 
+    inventory, available_inventory, lock_inventory
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from flash_sale_event
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from flash_sale_event
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gooddeal.flashsale.db.po.FlashsaleEvent">
+    insert into flash_sale_event (id, name, product_id, 
+      original_price, flash_sale_price, status, 
+      start_time, end_time, inventory, 
+      available_inventory, lock_inventory)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{productId,jdbcType=BIGINT}, 
+      #{originalPrice,jdbcType=DECIMAL}, #{flashSalePrice,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{inventory,jdbcType=BIGINT}, 
+      #{availableInventory,jdbcType=INTEGER}, #{lockInventory,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gooddeal.flashsale.db.po.FlashsaleEvent">
+    insert into flash_sale_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="originalPrice != null">
+        original_price,
+      </if>
+      <if test="flashSalePrice != null">
+        flash_sale_price,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="availableInventory != null">
+        available_inventory,
+      </if>
+      <if test="lockInventory != null">
+        lock_inventory,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flashSalePrice != null">
+        #{flashSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="availableInventory != null">
+        #{availableInventory,jdbcType=INTEGER},
+      </if>
+      <if test="lockInventory != null">
+        #{lockInventory,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gooddeal.flashsale.db.po.FlashsaleEvent">
+    update flash_sale_event
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="originalPrice != null">
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flashSalePrice != null">
+        flash_sale_price = #{flashSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="availableInventory != null">
+        available_inventory = #{availableInventory,jdbcType=INTEGER},
+      </if>
+      <if test="lockInventory != null">
+        lock_inventory = #{lockInventory,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gooddeal.flashsale.db.po.FlashsaleEvent">
+    update flash_sale_event
+    set name = #{name,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      flash_sale_price = #{flashSalePrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      inventory = #{inventory,jdbcType=BIGINT},
+      available_inventory = #{availableInventory,jdbcType=INTEGER},
+      lock_inventory = #{lockInventory,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
